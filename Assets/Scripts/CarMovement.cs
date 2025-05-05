@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
+    // car mass = 2
+    // gravity scale = 1.5
     private float horizontal;
     private float storedHorizontalVelocity = 0f;
     private float acceleration = 50f; // Acceleration rate
