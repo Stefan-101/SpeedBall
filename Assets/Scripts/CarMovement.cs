@@ -8,7 +8,7 @@ public class CarMovement : MonoBehaviour
     private float decelerationGrounded = 8f; // Deceleration rate when grounded
     private float decelerationAirborne = 3f; // Deceleration rate when airborne
     private float maxSpeed = 8f; // Maximum horizontal speed
-    private float jumpingPower = 20f;
+    private float jumpingPower = 25f;
     private bool isFacingRight = true;
     private int flipsLeft = 0;
     private bool isFlipping = false;
@@ -16,8 +16,8 @@ public class CarMovement : MonoBehaviour
     private float jumpTimer;
     private float jumpTimeWindow = 2.5f; // time window to allow flipping jumping
     private float flipTorquePower = 21f; // torque power for flipping
-    private float airboneTorquePower = 40f;
-    private float boostPower = 10f;
+    private float airboneTorquePower = 2f;
+    private float boostPower = 7.5f;
     private bool rotatingClockwise = false;
 
     [SerializeField] private Rigidbody2D rb;
@@ -57,7 +57,7 @@ public class CarMovement : MonoBehaviour
         }
 
         // handle flip
-        if (flipsLeft > 0 && Input.GetMouseButtonDown(1))
+        if (flipsLeft > 0 && Input.GetMouseButtonDown(1) && !isGrounded())
         {
             flipsLeft -= 1;
             FlipCar();
@@ -75,31 +75,20 @@ public class CarMovement : MonoBehaviour
             // Rotate the car when airborne
             if (!isFlipping)
             {
-                // Cap the angular velocity to prevent excessive spinning
-                float maxAngularVelocity = 200f; // Adjust this value to set the maximum spin speed
-                if (Mathf.Abs(rb.angularVelocity) < maxAngularVelocity)
+                float angularVelocity = airboneTorquePower * 100f;
+                if (Input.GetKey(KeyCode.A))
                 {
-                    if (Input.GetKey(KeyCode.A))
-                    {
-                        //if (rotatingClockwise)
-                        //{
-                        //    rotatingClockwise = false;
-                        //    rb.angularVelocity = 0f;
-                        //}
-                        rb.AddTorque(airboneTorquePower, ForceMode2D.Force); // Apply counterclockwise torque
-                    }
-                    else if (Input.GetKey(KeyCode.D))
-                    {
-                        //if (!rotatingClockwise)
-                        //{
-                        //    rotatingClockwise = true;
-                        //    rb.angularVelocity = 0f;
-                        //}
-                        rb.AddTorque(-airboneTorquePower, ForceMode2D.Force); // Apply clockwise torque
-                    }
+                    rb.angularVelocity = angularVelocity; // Rotate counterclockwise
+                }
+                else if (Input.GetKey(KeyCode.D) )
+                {
+                    rb.angularVelocity = -angularVelocity; // Rotate clockwise
+                }
+                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                {
+                    rb.angularVelocity = 0f;
                 }
             }
-
         }
 
         //flipFacing();
@@ -136,7 +125,7 @@ public class CarMovement : MonoBehaviour
         rb.AddForce(new Vector2(0f, -jumpingPower * 0.25f), ForceMode2D.Impulse);
 
         // apply linear force in the flip direction
-        Vector2 forceDirection = Quaternion.Euler(0, 0, rb.rotation) * new Vector2(-torqueDirection * 6f, 0f);
+        Vector2 forceDirection = Quaternion.Euler(0, 0, rb.rotation) * new Vector2(-torqueDirection * 15f, 0f);
         rb.AddForce(forceDirection, ForceMode2D.Impulse);
 
         // apply the torque
@@ -151,7 +140,7 @@ public class CarMovement : MonoBehaviour
             isFlipping = false;
         }
 
-        Invoke(nameof(ResetFlippingStatus), 0.6f);
+        Invoke(nameof(ResetFlippingStatus), 0.5f);
 
         // TODO fine tune for flipTorquePower
         // TODO add a force in the "selected" direction
