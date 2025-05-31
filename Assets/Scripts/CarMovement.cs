@@ -4,6 +4,7 @@ public class CarMovement : MonoBehaviour
 {
     // car mass = 2
     // gravity scale = 1.5
+    public int playerNumber = 1; // 1 for left player, 2 for right player, 3 online
     private float horizontal;
     private float storedHorizontalVelocity = 0f;
     private float acceleration = 50f; // Acceleration rate
@@ -162,7 +163,7 @@ public class CarMovement : MonoBehaviour
     {
         storedHorizontalVelocity = rb.linearVelocity.x;
 
-        if (isGrounded())
+        if (isGrounded() && CheckPlayerKeybinds(playerNumber))
         {
             // Accelerate when movement keys are pressed
             if (horizontal != 0 && (storedHorizontalVelocity < maxSpeed && storedHorizontalVelocity > -maxSpeed))
@@ -185,7 +186,33 @@ public class CarMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(storedHorizontalVelocity, rb.linearVelocity.y);
     }
 
-
+    private bool CheckPlayerKeybinds(int numberPlayer)
+    {
+        if (numberPlayer == 2)
+        {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (numberPlayer == 1)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+            return false;
+    }
     private void flipFacing()
     {
         if (isGrounded() && (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f))
