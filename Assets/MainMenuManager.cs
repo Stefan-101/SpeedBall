@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject mainMenuContent;    
     public GameObject customCarMenuPanel;
+    public GameObject userStatsPanel;
     public void Play()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
@@ -16,6 +17,12 @@ public class MainMenuManager : MonoBehaviour
     {
         customCarMenuPanel.SetActive(true); //show custom car menu
         mainMenuContent.SetActive(false);  //hide main menu
+    }
+ 
+    public void ShowUserStats()
+    {
+        mainMenuContent.SetActive(false);
+        userStatsPanel.SetActive(true);
     }
     public void Quit()
     {
