@@ -2567,6 +2567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1014722070}
+  - component: {fileID: 1014722071}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -2590,6 +2591,23 @@ Transform:
   - {fileID: 1382248420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1014722071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014722069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431ff4cfc2bb9674db4bcc9752ce8976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carSprites:
+  - {fileID: -6628052364927543, guid: 75cab62269a8d6e45ae677ffd33bd196, type: 3}
+  - {fileID: 8251771559520126516, guid: 9bbfe7c9117d5454cac9fb172a10d4d2, type: 3}
+  - {fileID: 2645994723726994537, guid: eb7cfec96c816b24e8d1bf78ea002f32, type: 3}
+  car: {fileID: 1382248419}
 --- !u!1 &1039741229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4160,7 +4178,7 @@ SpriteRenderer:
   m_Size: {x: 7.85, y: 3.63}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1993572530
