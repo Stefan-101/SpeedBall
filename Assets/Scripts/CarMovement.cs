@@ -7,20 +7,20 @@ public class CarMovement : MonoBehaviour
     public int playerNumber = 1; // 1 for left player, 2 for right player, 3 online
     private float horizontal;
     private float storedHorizontalVelocity = 0f;
-    private float acceleration = 50f; // Acceleration rate
+    private float acceleration = 80f; // Acceleration rate
     private float decelerationGrounded = 8f; // Deceleration rate when grounded
     private float decelerationAirborne = 3f; // Deceleration rate when airborne
-    private float maxSpeed = 8f; // Maximum horizontal speed
-    private float jumpingPower = 25f;
+    private float maxSpeed = 16f; // Maximum horizontal speed
+    private float jumpingPower = 35f;
     private bool isFacingRight = true;
     private int flipsLeft = 0;
     private bool isFlipping = false;
     private bool canFlip = false;
     private float jumpTimer;
     private float jumpTimeWindow = 2.5f; // time window to allow flipping jumping
-    private float flipTorquePower = 21f; // torque power for flipping
-    private float airboneTorquePower = 2f;
-    private float boostPower = 7.5f;
+    private float flipTorquePower = 35f; // torque power for flipping
+    private float airboneTorquePower = 3f;
+    private float boostPower = 4.5f;
     private bool rotatingClockwise = false;
 
     [SerializeField] private Rigidbody2D rb;
@@ -30,6 +30,8 @@ public class CarMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb.linearDamping = 0.5f;  // helps with stopping naturally when not accelerating
+        rb.angularDamping = 1.1f; // helps stabilize car rotation
 
     }
 
@@ -128,7 +130,9 @@ public class CarMovement : MonoBehaviour
         rb.AddForce(new Vector2(0f, -jumpingPower * 0.25f), ForceMode2D.Impulse);
 
         // apply linear force in the flip direction
-        Vector2 forceDirection = Quaternion.Euler(0, 0, rb.rotation) * new Vector2(-torqueDirection * 15f, 0f);
+        float angleOffset = 5f; // degrees
+        float totalRotation = rb.rotation + torqueDirection * angleOffset;
+        Vector2 forceDirection = Quaternion.Euler(0, 0, totalRotation) * new Vector2(-torqueDirection * 25f, 0f);
         rb.AddForce(forceDirection, ForceMode2D.Impulse);
 
         // apply the torque
