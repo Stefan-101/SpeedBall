@@ -1,7 +1,21 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[System.Serializable]
+public class PlayerInputConfig
+{
+    public KeyCode leftKey;
+    public KeyCode rightKey;
+    public KeyCode jumpKey;
+    public KeyCode boostKey;
+    public bool isLeftPlayer = false;
+}
 
 public class CarMovement : MonoBehaviour
 {
+    public PlayerInputConfig inputConfig; // Configuration for player input keys
+    public Vector2 bstFrc;
+
     // car mass = 2
     // gravity scale = 1.5
     public int playerNumber = 1; // 1 for left player, 2 for right player, 3 online
@@ -20,7 +34,7 @@ public class CarMovement : MonoBehaviour
     private float jumpTimeWindow = 2.5f; // time window to allow flipping jumping
     private float flipTorquePower = 35f; // torque power for flipping
     private float airboneTorquePower = 3f;
-    private float boostPower = 4.5f;
+    private float boostPower = 4.25f;
     private bool rotatingClockwise = false;
 
     [SerializeField] private Rigidbody2D rb;
@@ -33,15 +47,22 @@ public class CarMovement : MonoBehaviour
         rb.linearDamping = 0.5f;  // helps with stopping naturally when not accelerating
         rb.angularDamping = 1.1f; // helps stabilize car rotation
 
+        if (inputConfig.isLeftPlayer)
+        {
+            flipFacing();
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
+        horizontal = 0f;
+        if (Input.GetKey(inputConfig.leftKey)) horizontal -= 1f;
+        if (Input.GetKey(inputConfig.rightKey)) horizontal += 1f;
 
         // first jump
-        if (Input.GetMouseButtonDown(1) && isGrounded())
+        if (Input.GetKeyDown(inputConfig.jumpKey) && isGrounded())
         {
             rb.AddForce(new Vector2(0f, jumpingPower), ForceMode2D.Impulse);
             canFlip = true;
@@ -49,7 +70,7 @@ public class CarMovement : MonoBehaviour
         }
 
         // only after leaving the ground, allow the user to do a flip
-        if (Input.GetMouseButtonUp(1) && canFlip)
+        if (Input.GetKeyDown(inputConfig.jumpKey) && canFlip)
         {
             canFlip = false;
             flipsLeft = 1;
@@ -62,13 +83,13 @@ public class CarMovement : MonoBehaviour
         }
 
         // handle flip
-        if (flipsLeft > 0 && Input.GetMouseButtonDown(1) && !isGrounded())
+        if (flipsLeft > 0 && Input.GetKeyDown(inputConfig.jumpKey) && !isGrounded())
         {
             flipsLeft -= 1;
             FlipCar();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(inputConfig.boostKey))
         {
             ApplyBoost();
         }
@@ -81,22 +102,20 @@ public class CarMovement : MonoBehaviour
             if (!isFlipping)
             {
                 float angularVelocity = airboneTorquePower * 100f;
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(inputConfig.leftKey))
                 {
                     rb.angularVelocity = angularVelocity; // Rotate counterclockwise
                 }
-                else if (Input.GetKey(KeyCode.D) )
+                else if (Input.GetKey(inputConfig.rightKey) )
                 {
                     rb.angularVelocity = -angularVelocity; // Rotate clockwise
                 }
-                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                else if (Input.GetKeyUp(inputConfig.leftKey) || Input.GetKeyUp(inputConfig.rightKey))
                 {
                     rb.angularVelocity = 0f;
                 }
             }
         }
-
-        //flipFacing();
     }
 
     private void ApplyBoost()
@@ -107,9 +126,11 @@ public class CarMovement : MonoBehaviour
         }
 
         // Apply a constant force to the back of the car
-        Vector2 boostForce = -transform.right * boostPower;     // TODO check orientation of the car ?
+        Vector2 boostForce = -transform.right * boostPower;
+        boostForce = isFacingRight ? boostForce : -boostForce;
         boostForce = isGrounded() ? boostForce * 1.5f : boostForce;
         rb.AddForce(boostForce, ForceMode2D.Force);
+        bstFrc = boostForce;
     }
 
     private void FlipCar()
@@ -117,11 +138,11 @@ public class CarMovement : MonoBehaviour
         isFlipping = true;
 
         float torqueDirection = 0f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(inputConfig.leftKey))
         {
             torqueDirection = 1f;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(inputConfig.rightKey))
         {
             torqueDirection = -1f;
         }
@@ -167,7 +188,7 @@ public class CarMovement : MonoBehaviour
     {
         storedHorizontalVelocity = rb.linearVelocity.x;
 
-        if (isGrounded() && CheckPlayerKeybinds(playerNumber))
+        if (isGrounded())
         {
             // Accelerate when movement keys are pressed
             if (horizontal != 0 && (storedHorizontalVelocity < maxSpeed && storedHorizontalVelocity > -maxSpeed))
@@ -190,41 +211,11 @@ public class CarMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(storedHorizontalVelocity, rb.linearVelocity.y);
     }
 
-    private bool CheckPlayerKeybinds(int numberPlayer)
-    {
-        if (numberPlayer == 2)
-        {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else if (numberPlayer == 1)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-            return false;
-    }
     private void flipFacing()
     {
-        if (isGrounded() && (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f))
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
