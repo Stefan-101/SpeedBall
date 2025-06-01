@@ -14,7 +14,6 @@ public class PlayerInputConfig
 public class CarMovement : MonoBehaviour
 {
     public PlayerInputConfig inputConfig; // Configuration for player input keys
-    public Vector2 bstFrc;
 
     // car mass = 2
     // gravity scale = 1.5
@@ -130,7 +129,6 @@ public class CarMovement : MonoBehaviour
         boostForce = isFacingRight ? boostForce : -boostForce;
         boostForce = isGrounded() ? boostForce * 1.5f : boostForce;
         rb.AddForce(boostForce, ForceMode2D.Force);
-        bstFrc = boostForce;
     }
 
     private void FlipCar()
