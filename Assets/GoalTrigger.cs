@@ -34,4 +34,10 @@ public class GoalTrigger : MonoBehaviour
         rb.angularVelocity = 0;
         gameManager.GetComponent<GameManager>().ResetGame();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlaySFX(AudioManager.instance.collisionWithBallSound);
+    }
 }
