@@ -32,7 +32,7 @@ public class CarMovement : MonoBehaviour
     private float jumpTimeWindow = 2.5f;
     private float flipTorquePower = 35f;
     private float airboneTorquePower = 3f;
-    private float boostPower = 4.25f;
+    private float boostPower = 52f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -82,7 +82,9 @@ public class CarMovement : MonoBehaviour
 
         //checking for animator parameters
         bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey);
+        bool isBoosting = Input.GetKey(inputConfig.boostKey);
         animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isBoosting", isBoosting);
 
         if (!isMoving)
         {
