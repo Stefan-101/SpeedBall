@@ -22,11 +22,13 @@ public class GoalTrigger : MonoBehaviour
         {
             gameManager.GetComponent<GameManager>().scoreRight += 1;
             Debug.Log("Right Player Scored!");
+            AudioManager.instance.Applause();
         }
         else if (collision.CompareTag("RightGoal"))
         {
             gameManager.GetComponent<GameManager>().scoreLeft += 1;
             Debug.Log("Left Player Scored!");
+            AudioManager.instance.Applause();
         }
         transform.position = new Vector3(0, 0, 0);
         rb.linearVelocityX = 0;

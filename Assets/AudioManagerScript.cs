@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip gameSceneMusic;
     public AudioClip clickSound;
     public AudioClip collisionWithBallSound;
+    public AudioClip applauseSound;
+    public AudioClip winSound;
+    public AudioClip loseSound;
 
     private void Awake()
     {
@@ -58,7 +61,20 @@ public class AudioManager : MonoBehaviour
     {
         PlaySFX(clickSound);
     }
-
+    public void Applause()
+    {
+        sfxSource.clip = applauseSound;
+        sfxSource.time = 1f; //starts from second 1
+        sfxSource.Play();
+    }
+    public void WinSound()
+    {
+        PlaySFX(winSound);
+    }
+    public void LostSound()
+    {
+        PlaySFX(loseSound);
+    }
     public void StopMusic()
     {
         musicSource.Stop();

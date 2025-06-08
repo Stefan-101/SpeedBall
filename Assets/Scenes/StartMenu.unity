@@ -1697,7 +1697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 139.3}
+  m_AnchoredPosition: {x: 0, y: 224.6}
   m_SizeDelta: {x: 502.2, y: 62.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460526903
@@ -1791,7 +1791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &482172137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2235,7 +2235,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 2846.7, y: -378}
-  m_SizeDelta: {x: 20.1, y: 40.22}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 123.45, y: 0.16}
 --- !u!114 &592119174
 MonoBehaviour:
@@ -2963,7 +2963,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -302.974}
-  m_SizeDelta: {x: 20.1, y: 40.22}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: -15.19, y: 0.33}
 --- !u!114 &807828075
 MonoBehaviour:
@@ -3094,7 +3094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &819984890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3269,7 +3269,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 137.3, y: -226.1}
-  m_SizeDelta: {x: 20.1, y: 40.22}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: -9.09, y: 0.5}
 --- !u!114 &827932114
 MonoBehaviour:
@@ -4397,7 +4397,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 344.4, y: -160.1}
-  m_SizeDelta: {x: 20.1, y: 40.22}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217041964
 MonoBehaviour:
@@ -6936,7 +6936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carImage: {fileID: 1010852529}
   carSprites:
-  - {fileID: -6628052364927543, guid: 75cab62269a8d6e45ae677ffd33bd196, type: 3}
+  - {fileID: 21300000, guid: c18b29f8c3464494a882193fc68d48cb, type: 3}
   - {fileID: 8251771559520126516, guid: 9bbfe7c9117d5454cac9fb172a10d4d2, type: 3}
   - {fileID: 2645994723726994537, guid: eb7cfec96c816b24e8d1bf78ea002f32, type: 3}
   mainMenuContent: {fileID: 819984889}
@@ -8050,6 +8050,9 @@ MonoBehaviour:
   gameSceneMusic: {fileID: 8300000, guid: 43d8b1ff97be08e4ab9431f951703f28, type: 3}
   clickSound: {fileID: 8300000, guid: 4efa79f2c49365148b896430ad500c2d, type: 3}
   collisionWithBallSound: {fileID: 8300000, guid: f17ca9ea94d5a6543aa99f89872e8491, type: 3}
+  applauseSound: {fileID: 8300000, guid: a07c0288ffd6f8f4bb6888dbaf0b8d66, type: 3}
+  winSound: {fileID: 8300000, guid: af589b2332429434497b031106eb05c4, type: 3}
+  loseSound: {fileID: 8300000, guid: 83ed1fd9656e9734788d1b7dd7c6c11d, type: 3}
 --- !u!1 &2103620204
 GameObject:
   m_ObjectHideFlags: 0

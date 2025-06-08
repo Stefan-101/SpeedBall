@@ -15,9 +15,15 @@ public class GameManager : MonoBehaviour
     bool isFreeze = true;
     public float freezeTime = 3f;
 
+    public Sprite[] digitSprites;    
+    public Image[] leftScoreImages;      
+    public Image[] rightScoreImages;    
+
     void Start()
     {
         FreezeAndStartAfterDelay(freezeTime);
+        SetScoreImages(0, leftScoreImages);
+        SetScoreImages(0, rightScoreImages);
     }
 
     // Update is called once per frame
@@ -26,7 +32,30 @@ public class GameManager : MonoBehaviour
 
     }
 
- 
+    void SetScoreImages(int score, Image[] imageSlots)
+    {
+        //always 2 digits (0x or xx)
+        string scoreStr = score.ToString().PadLeft(2, '0');
+
+        //reset
+        foreach (var img in imageSlots)
+            img.enabled = false;
+
+        int offset = imageSlots.Length - scoreStr.Length;
+
+        for (int i = 0; i < scoreStr.Length; i++)
+        {
+            int digit = scoreStr[i] - '0';
+            imageSlots[offset + i].sprite = digitSprites[digit];
+            imageSlots[offset + i].enabled = true;
+        }
+    }
+
+    void UpdateScoreImages()
+    {
+        SetScoreImages(scoreLeft, leftScoreImages);
+        SetScoreImages(scoreRight, rightScoreImages);
+    }
     public void ResetGame()
     {
         leftPlayer.transform.position = new Vector3(-20, 0, 0);
@@ -36,7 +65,7 @@ public class GameManager : MonoBehaviour
         rightPlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         rightPlayer.GetComponent<Rigidbody2D>().angularVelocity = 0;
 
-        score.text = scoreLeft + " - " + scoreRight;
+        UpdateScoreImages();
         FreezeAndStartAfterDelay(freezeTime);
 
     }
