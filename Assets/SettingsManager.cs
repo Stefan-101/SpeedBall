@@ -8,7 +8,8 @@ public class SettingsManager : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
-
+    public GameObject mainMenuContent;
+    public GameObject settingsContent;
 
     Resolution[] Resolutions;
     bool isFullscreen;
@@ -17,6 +18,7 @@ public class SettingsManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.PlayClickSound();
         isFullscreen = true;
         Resolutions = Screen.resolutions;
         string newRes;
@@ -49,9 +51,16 @@ public class SettingsManager : MonoBehaviour
 
     }
 
+    public void Exit()
+    {
+        AudioManager.instance.PlayClickSound();
+        settingsContent.SetActive(false);
+        mainMenuContent.SetActive(true);
+
+    }
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }

@@ -7,6 +7,7 @@ public class UserStats : MonoBehaviour
 
     public void ExitStats()
     {
+        AudioManager.instance.PlayClickSound();
         userStatsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
     }

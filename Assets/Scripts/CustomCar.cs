@@ -6,6 +6,8 @@ public class CustomCar : MonoBehaviour
 {
     public Image carImage;
     public Sprite[] carSprites;
+    public GameObject mainMenuContent;
+    public GameObject customCarMenuPanel;
 
     private int index = 0;
 
@@ -17,6 +19,7 @@ public class CustomCar : MonoBehaviour
 
     public void OnClickLeft()
     {
+        AudioManager.instance.PlayClickSound();
         index--;
         if (index < 0) //if there are no cars left to the left
             index = carSprites.Length - 1; //go back to the last one, like in a circle
@@ -25,6 +28,7 @@ public class CustomCar : MonoBehaviour
 
     public void OnClickRight()
     {
+        AudioManager.instance.PlayClickSound();
         index++;
         if (index >= carSprites.Length) //if there are no cars left to the right
             index = 0; //go back to the first one, like in a cirle 
@@ -33,6 +37,7 @@ public class CustomCar : MonoBehaviour
 
     public void OnClickSelect()
     {
+        AudioManager.instance.PlayClickSound();
         PlayerPrefs.SetInt("SelectedCar", index);
         PlayerPrefs.Save();
         Debug.Log("Selected the car with index: " + index);
@@ -44,7 +49,9 @@ public class CustomCar : MonoBehaviour
     }
     public void GoToStartMenu() //when pressing exit
     {
-        SceneManager.LoadScene("StartMenu");
+        AudioManager.instance.PlayClickSound();
+        mainMenuContent.SetActive(true);
+        customCarMenuPanel.SetActive(false);
     }
 
 }

@@ -14,13 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Network.unity
     guid: 8dc5cc5e58762be48aadacbc5ff21491
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Loading.unity
     guid: abe0b9f3f1879be468b1af115d131eb1
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 20313e0a8533024408a8a57e6584a845
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1v1Scene.unity
     guid: 6fdaf11c9448e374cb8d8de05c1f6692
   - enabled: 1
