@@ -81,10 +81,12 @@ public class CarMovement : MonoBehaviour
         SetInput(h, jump, boost);
 
         //checking for animator parameters
-        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey);
+        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey) || Input.GetKey(inputConfig.boostKey);
         bool isBoosting = Input.GetKey(inputConfig.boostKey);
+        bool isGrounded = IsGrounded();
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isBoosting", isBoosting);
+        animator.SetBool("isGrounded", isGrounded);
 
         if (!isMoving)
         {
