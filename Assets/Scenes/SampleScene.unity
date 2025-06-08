@@ -1915,6 +1915,7 @@ GameObject:
   - component: {fileID: 668001627}
   - component: {fileID: 668001626}
   - component: {fileID: 668001631}
+  - component: {fileID: 668001632}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1974,7 +1975,7 @@ SpriteRenderer:
   m_Size: {x: 2.48, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &668001626
@@ -2167,6 +2168,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  carIdleSprites:
+  - {fileID: 21300000, guid: 75cab62269a8d6e45ae677ffd33bd196, type: 3}
+  - {fileID: 8251771559520126516, guid: 9bbfe7c9117d5454cac9fb172a10d4d2, type: 3}
+  - {fileID: 2645994723726994537, guid: eb7cfec96c816b24e8d1bf78ea002f32, type: 3}
 --- !u!61 &668001628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2278,6 +2283,28 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!95 &668001632
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668001624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60ce09834a8ef27499b1d04929cee2cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &749341287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,6 +3254,7 @@ GameObject:
   - component: {fileID: 1382248416}
   - component: {fileID: 1382248415}
   - component: {fileID: 1382248421}
+  - component: {fileID: 1382248422}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -3424,6 +3452,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  carIdleSprites:
+  - {fileID: 21300000, guid: 75cab62269a8d6e45ae677ffd33bd196, type: 3}
+  - {fileID: 8251771559520126516, guid: 9bbfe7c9117d5454cac9fb172a10d4d2, type: 3}
+  - {fileID: 2645994723726994537, guid: eb7cfec96c816b24e8d1bf78ea002f32, type: 3}
 --- !u!61 &1382248417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3549,7 +3581,7 @@ SpriteRenderer:
   m_Size: {x: 2.48, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1382248420
@@ -3590,6 +3622,28 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!95 &1382248422
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382248414}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60ce09834a8ef27499b1d04929cee2cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1412275261
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,11 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    private Animator animator;
+    private int selectedCar;
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] carIdleSprites;
+
     // INPUT BUFFER
     private Vector2 latestInput = Vector2.zero;
     private bool jumpPressed = false;
@@ -52,6 +57,11 @@ public class CarMovement : MonoBehaviour
     {
         rb.linearDamping = 0.5f;
         rb.angularDamping = 1.1f;
+
+        animator = GetComponent<Animator>();
+        selectedCar = PlayerPrefs.GetInt("SelectedCar", 0);
+        animator.SetInteger("carIndex", selectedCar);
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (inputConfig.isLeftPlayer)
         {
@@ -69,6 +79,21 @@ public class CarMovement : MonoBehaviour
         bool boost = Input.GetKey(inputConfig.boostKey);
 
         SetInput(h, jump, boost);
+
+        //checking for animator parameters
+        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey);
+        animator.SetBool("isMoving", isMoving);
+
+        if (!isMoving)
+        {
+            animator.enabled = false;
+            spriteRenderer.sprite = carIdleSprites[selectedCar]; 
+        }
+        else
+        {
+            animator.enabled = true; 
+        }
+
     }
 
     void SetInput(float h, bool jump, bool boost)
