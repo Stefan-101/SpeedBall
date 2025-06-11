@@ -84,8 +84,8 @@ public class CarMovement : MonoBehaviour
         SetInput(h, jump, boost);
 
         //checking for animator parameters
-        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey) || Input.GetKey(inputConfig.boostKey);
-        bool isBoosting = Input.GetKey(inputConfig.boostKey);
+        bool isBoosting = Input.GetKey(inputConfig.boostKey) && remainingBoost > 0f;
+        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey) || isBoosting;
         bool isGrounded = IsGrounded();
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isBoosting", isBoosting);
@@ -188,13 +188,20 @@ public class CarMovement : MonoBehaviour
 
     private void ApplyBoost()
     {
-        if (isFlipping) return;
+        if (isFlipping || remainingBoost <= 0f) return;
 
         Vector2 boostForce = -transform.right * boostPower;
         boostForce = isFacingRight ? boostForce : -boostForce;
         boostForce *= IsGrounded() ? 1.5f : 1f;
 
         rb.AddForce(boostForce, ForceMode2D.Force);
+
+        // drain boost
+        remainingBoost -= boostDrainRate * Time.fixedDeltaTime;
+        if (remainingBoost <= 0f)
+        {
+            remainingBoost = 0f;
+        }
     }
 
     private void FlipCar()
