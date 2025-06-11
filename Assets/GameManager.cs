@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +15,16 @@ public class GameManager : MonoBehaviour
     bool isFreeze = true;
     public float freezeTime = 3f;
 
-    public Sprite[] digitSprites;    
+    public Sprite[] digitSprites;
     public Image[] leftScoreImages;      
-    public Image[] rightScoreImages;    
+    public Image[] rightScoreImages;
+
+
+    //Timer-ul
+
+    public Image[] imageSlots;        // Sloturi UI → 4 imagini pentru MMSS
+                                         // Sprite-uri de scor: 0–9
+    public float elapsedTime = 120f;
 
     void Start()
     {
@@ -29,6 +36,51 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        elapsedTime -= Time.deltaTime;
+
+        int totalSeconds = Mathf.FloorToInt(elapsedTime);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        string timeStr = minutes.ToString("00") + seconds.ToString("00");
+
+        SetTimpImages(timeStr, imageSlots);
+
+        if (elapsedTime <= 0.0f)
+        {
+            timerEnded();
+        }
+
+
+
+    }
+    void timerEnded()
+    {
+        // Game Over logic
+        Debug.Log("Game Over!");
+        Time.timeScale = 0; // Stop the game
+        startTime.text = "Game Over!";
+
+
+        if(scoreLeft > scoreRight)
+        {
+            startTime.text += "\nLeft Player Wins!";
+
+            PlayerStatsManager.instance.AddGame(true); // dacă a câștigat
+            PlayerStatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+
+        }
+        else if (scoreRight > scoreLeft)
+        {
+            startTime.text += "\nRight Player Wins!";
+        }
+        else
+        {
+            startTime.text += "\nIt's a Draw!";
+
+            PlayerStatsManager.instance.AddDraw(true); // dacă a pierdut
+        }
+        FreezeAndStartAfterDelay(2f); // Optionally, freeze the game for a few seconds before resetting
 
     }
 
@@ -50,6 +102,18 @@ public class GameManager : MonoBehaviour
             imageSlots[offset + i].enabled = true;
         }
     }
+
+    void SetTimpImages(string timeStr, Image[] imageSlots)
+    {
+        for (int i = 0; i < imageSlots.Length && i < timeStr.Length; i++)
+        {
+            int digit = timeStr[i] - '0';
+            imageSlots[i].sprite = digitSprites[digit];
+            imageSlots[i].enabled = true;
+        }
+    }
+
+
 
     void UpdateScoreImages()
     {
