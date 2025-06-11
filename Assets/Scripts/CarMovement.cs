@@ -32,7 +32,10 @@ public class CarMovement : MonoBehaviour
     private float jumpTimeWindow = 2.5f;
     private float flipTorquePower = 35f;
     private float airboneTorquePower = 3f;
-    private float boostPower = 4.25f;
+    private float boostPower = 52f;
+    private float boostDrainRate = 30f;
+    private float defaultBoostAmount = 33f;
+    public float remainingBoost = 33f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -81,8 +84,12 @@ public class CarMovement : MonoBehaviour
         SetInput(h, jump, boost);
 
         //checking for animator parameters
-        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey);
+        bool isBoosting = Input.GetKey(inputConfig.boostKey) && remainingBoost > 0f;
+        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey) || isBoosting;
+        bool isGrounded = IsGrounded();
         animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isBoosting", isBoosting);
+        animator.SetBool("isGrounded", isGrounded);
 
         if (!isMoving)
         {
@@ -181,13 +188,20 @@ public class CarMovement : MonoBehaviour
 
     private void ApplyBoost()
     {
-        if (isFlipping) return;
+        if (isFlipping || remainingBoost <= 0f) return;
 
         Vector2 boostForce = -transform.right * boostPower;
         boostForce = isFacingRight ? boostForce : -boostForce;
         boostForce *= IsGrounded() ? 1.5f : 1f;
 
         rb.AddForce(boostForce, ForceMode2D.Force);
+
+        // drain boost
+        remainingBoost -= boostDrainRate * Time.fixedDeltaTime;
+        if (remainingBoost <= 0f)
+        {
+            remainingBoost = 0f;
+        }
     }
 
     private void FlipCar()
@@ -226,6 +240,11 @@ public class CarMovement : MonoBehaviour
     private void ResetFlippingStatus()
     {
         isFlipping = false;
+    }
+
+    public void ResetBoost()
+    {
+        remainingBoost = defaultBoostAmount;
     }
 
     private bool IsGrounded()

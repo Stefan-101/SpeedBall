@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -122,16 +123,29 @@ public class GameManager : MonoBehaviour
     }
     public void ResetGame()
     {
+        // Clear all boost pickups from the map
+        foreach (var boost in FindObjectsOfType<BoostPickup>())
+        {
+            if (boost.tag != null && boost.tag == "CloneBoostOrb")
+            {
+                Destroy(boost.gameObject);
+            }
+        }
+
         leftPlayer.transform.position = new Vector3(-20, 0, 0);
+        leftPlayer.transform.rotation = Quaternion.identity; // Reset rotation
         leftPlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         leftPlayer.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        leftPlayer.GetComponent<CarMovement>().ResetBoost();
+
         rightPlayer.transform.position = new Vector3(20, 0, 0);
+        rightPlayer.transform.rotation = Quaternion.identity; // Reset rotation
         rightPlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         rightPlayer.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        rightPlayer.GetComponent<CarMovement>().ResetBoost();
 
         UpdateScoreImages();
         FreezeAndStartAfterDelay(freezeTime);
-
     }
     void FreezeAndStartAfterDelay(float duration)
     {
