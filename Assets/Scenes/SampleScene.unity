@@ -2010,7 +2010,7 @@ GameObject:
   - component: {fileID: 556599790}
   - component: {fileID: 556599794}
   m_Layer: 5
-  m_Name: BoostDisplay
+  m_Name: BoostDisplayPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5581,7 +5581,7 @@ GameObject:
   - component: {fileID: 1676645003}
   - component: {fileID: 1676645002}
   m_Layer: 5
-  m_Name: BoostDisplay2
+  m_Name: BoostDisplayPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6336,3 +6336,5 @@ SceneRoots:
   - {fileID: 1412275262}
   - {fileID: 1315533174}
   - {fileID: 556599793}
+  - {fileID: 1676645006}
+  - {fileID: 313820689}
