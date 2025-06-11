@@ -6,6 +6,7 @@ public class BoostSpawner : MonoBehaviour
     public float spawnInterval = 10f;
     public Vector2 spawnAreaMin = new Vector2(-20, -10);
     public Vector2 spawnAreaMax = new Vector2(20, 10);
+    private int maxOrbCount = 5;
 
     private void Start()
     {
@@ -14,6 +15,12 @@ public class BoostSpawner : MonoBehaviour
 
     void SpawnBoost()
     {
+        int orbCount = GameObject.FindGameObjectsWithTag("CloneBoostOrb").Length;
+        if (orbCount >= maxOrbCount)
+        {
+            return;
+        }
+
         Vector2 spawnPos = new Vector2(
             Random.Range(spawnAreaMin.x, spawnAreaMax.x),
             Random.Range(spawnAreaMin.y, spawnAreaMax.y)
