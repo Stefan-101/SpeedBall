@@ -83,16 +83,16 @@ public class GameManager : MonoBehaviour
         {
             startTime.text += "\nLeft Player Wins!";
 
-            StatsManager.AddGame(true); // dacă a câștigat
-            StatsManager.AddPlayTime(Time.deltaTime); // în Update()
+            global::StatsManager.instance.AddGame(true); // dacă a câștigat
+            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
 
         }
         else if (scoreRight > scoreLeft)
         {
             startTime.text += "\nRight Player Wins!";
 
-            StatsManager.instance.AddGame(false); // dacă a câștigat
-            StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+            global::StatsManager.instance.AddGame(false); // dacă a câștigat
+            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
         }
         else
         {
