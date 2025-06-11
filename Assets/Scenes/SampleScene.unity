@@ -2718,7 +2718,7 @@ MonoBehaviour:
     jumpKey: 110
     boostKey: 98
     isLeftPlayer: 1
-  remainingBoost: 100
+  remainingBoost: 33
   rb: {fileID: 668001629}
   groundCheck: {fileID: 227986596}
   groundLayer:
@@ -4658,7 +4658,7 @@ MonoBehaviour:
     jumpKey: 258
     boostKey: 257
     isLeftPlayer: 0
-  remainingBoost: 100
+  remainingBoost: 33
   rb: {fileID: 1382248418}
   groundCheck: {fileID: 1529374900}
   groundLayer:
