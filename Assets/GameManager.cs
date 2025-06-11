@@ -133,18 +133,19 @@ public class GameManager : MonoBehaviour
         }
 
         leftPlayer.transform.position = new Vector3(-20, 0, 0);
+        leftPlayer.transform.rotation = Quaternion.identity; // Reset rotation
         leftPlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         leftPlayer.GetComponent<Rigidbody2D>().angularVelocity = 0;
         leftPlayer.GetComponent<CarMovement>().ResetBoost();
 
         rightPlayer.transform.position = new Vector3(20, 0, 0);
+        rightPlayer.transform.rotation = Quaternion.identity; // Reset rotation
         rightPlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         rightPlayer.GetComponent<Rigidbody2D>().angularVelocity = 0;
         rightPlayer.GetComponent<CarMovement>().ResetBoost();
 
         UpdateScoreImages();
         FreezeAndStartAfterDelay(freezeTime);
-
     }
     void FreezeAndStartAfterDelay(float duration)
     {
