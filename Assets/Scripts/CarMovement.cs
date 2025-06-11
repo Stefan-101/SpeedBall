@@ -33,6 +33,9 @@ public class CarMovement : MonoBehaviour
     private float flipTorquePower = 35f;
     private float airboneTorquePower = 3f;
     private float boostPower = 52f;
+    private float boostDrainRate = 30f;
+    private float defaultBoostAmount = 33f;
+    public float remainingBoost = 33f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -230,6 +233,11 @@ public class CarMovement : MonoBehaviour
     private void ResetFlippingStatus()
     {
         isFlipping = false;
+    }
+
+    public void ResetBoost()
+    {
+        remainingBoost = defaultBoostAmount;
     }
 
     private bool IsGrounded()

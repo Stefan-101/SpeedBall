@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      car2-v1.3-boost_0: 2070422780176396890
+      car2-v1.3-boost_1: 468419818833453127
+      car2-v1.3-boost_2: -8316604280223928380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

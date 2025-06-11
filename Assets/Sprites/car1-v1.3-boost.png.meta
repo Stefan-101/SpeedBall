@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      car1-v1.3-boost_0: -9034809028190911826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
