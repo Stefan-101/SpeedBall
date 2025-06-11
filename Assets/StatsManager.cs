@@ -63,9 +63,9 @@ public class PlayerStats
     }
 }
 
-public class PlayerStatsManager : MonoBehaviour
+public class StatsManager : MonoBehaviour
 {
-    public static PlayerStatsManager instance;
+    public static StatsManager instance;
     public PlayerStats stats = new PlayerStats();
 
     private string statsFilePath;

@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -19,24 +21,31 @@ public class GameManager : MonoBehaviour
     public Sprite[] digitSprites;
     public Image[] leftScoreImages;      
     public Image[] rightScoreImages;
+    public GameObject StatsManager;
 
 
     //Timer-ul
 
     public Image[] imageSlots;        // Sloturi UI → 4 imagini pentru MMSS
                                          // Sprite-uri de scor: 0–9
-    public float elapsedTime = 120f;
+    public float elapsedTime = 30f;
+
+
+    private bool gameEnded = false;
 
     void Start()
     {
         FreezeAndStartAfterDelay(freezeTime);
         SetScoreImages(0, leftScoreImages);
         SetScoreImages(0, rightScoreImages);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (gameEnded) return;
         elapsedTime -= Time.deltaTime;
 
         int totalSeconds = Mathf.FloorToInt(elapsedTime);
@@ -45,7 +54,8 @@ public class GameManager : MonoBehaviour
 
         string timeStr = minutes.ToString("00") + seconds.ToString("00");
 
-        SetTimpImages(timeStr, imageSlots);
+        if(elapsedTime > 0.0f)
+             SetTimpImages(timeStr, imageSlots);
 
         if (elapsedTime <= 0.0f)
         {
@@ -57,33 +67,57 @@ public class GameManager : MonoBehaviour
     }
     void timerEnded()
     {
+        if (gameEnded) return; // Previne apelarea multiplă
+
+        gameEnded = true; // Marchează jocul ca terminat
+
         // Game Over logic
         Debug.Log("Game Over!");
-        Time.timeScale = 0; // Stop the game
+        // NU folosi Time.timeScale = 0; aici!
+
         startTime.text = "Game Over!";
 
 
-        if(scoreLeft > scoreRight)
+
+        if (scoreLeft > scoreRight)
         {
             startTime.text += "\nLeft Player Wins!";
 
-            PlayerStatsManager.instance.AddGame(true); // dacă a câștigat
-            PlayerStatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+            StatsManager.AddGame(true); // dacă a câștigat
+            StatsManager.AddPlayTime(Time.deltaTime); // în Update()
 
         }
         else if (scoreRight > scoreLeft)
         {
             startTime.text += "\nRight Player Wins!";
+
+            StatsManager.instance.AddGame(false); // dacă a câștigat
+            StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
         }
         else
         {
             startTime.text += "\nIt's a Draw!";
 
-            PlayerStatsManager.instance.AddDraw(true); // dacă a pierdut
+            global::StatsManager.instance.AddDraw(true); // dacă a pierdut
+            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+
         }
-        FreezeAndStartAfterDelay(2f); // Optionally, freeze the game for a few seconds before resetting
+        StartCoroutine(ReturnToStartMenuAfterDelay(3f));
+         // Optionally, freeze the game for a few seconds before resetting
 
     }
+
+    public void LoadStartMenuScene()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    IEnumerator ReturnToStartMenuAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        LoadStartMenuScene();
+    }
+
 
     void SetScoreImages(int score, Image[] imageSlots)
     {
@@ -109,7 +143,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < imageSlots.Length && i < timeStr.Length; i++)
         {
             int digit = timeStr[i] - '0';
+            Debug.Log(CountdownAndStartGame(freezeTime) + " " + digit + " " + imageSlots[i].name);
             imageSlots[i].sprite = digitSprites[digit];
+
             imageSlots[i].enabled = true;
         }
     }
