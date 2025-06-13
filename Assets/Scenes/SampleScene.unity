@@ -4844,7 +4844,7 @@ MonoBehaviour:
   - {fileID: 1234254856}
   - {fileID: 2007832501}
   - {fileID: 523687476}
-  elapsedTime: 10
+  elapsedTime: 30
 --- !u!1 &1382248414
 GameObject:
   m_ObjectHideFlags: 0
