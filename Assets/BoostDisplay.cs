@@ -11,7 +11,7 @@ public class BoostDisplay : MonoBehaviour
     {
         if (carMovement != null && boostText != null)
         {
-            boostText.text = $"Boost: {carMovement.remainingBoost:F0}";
+            boostText.text = $"{carMovement.remainingBoost:F0}";
         }
     }
 }
