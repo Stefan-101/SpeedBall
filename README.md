@@ -96,13 +96,13 @@
 
   Also, find all pull requests here 👉 [View Pull Requests](https://github.com/Stefan-101/SpeedBall/pulls?q=is%3Apr+is%3Aclosed)
 
-# Automate tests
+# Automated testing
 ---
  Tests for car movement can be seen here 👉 [View Tests](https://www.youtube.com/watch?v=nsvnU43GhPQ&feature=youtu.be).
- Tests were made for checking:
-   - boosters for car
-   - jump functionality for car
-   - car's moving (left or right)
+ Tests were made for checking the:
+   - car boost
+   - jump functionality of the car
+   - ground movement of the car
      
 # Reporting bugs and solving them with pull request
 ---
