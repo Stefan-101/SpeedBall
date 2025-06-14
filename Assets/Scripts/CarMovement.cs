@@ -10,10 +10,20 @@ public class PlayerInputConfig
     public bool isLeftPlayer = false;
 }
 
+[System.Serializable]
+public class TestInputs
+{
+    public bool leftKeyPressed = false;
+    public bool rightKeyPressed = false;
+    public bool jumpKeyPressed = false;
+    public bool boostKeyPressed = false;
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class CarMovement : MonoBehaviour
 {
     public PlayerInputConfig inputConfig;
+    public TestInputs testInputs; // can be used to actionate the car movement in test scripts
 
     private float storedHorizontalVelocity = 0f;
 
@@ -75,17 +85,17 @@ public class CarMovement : MonoBehaviour
     private void Update()
     {
         float h = 0f;
-        if (Input.GetKey(inputConfig.leftKey)) h -= 1f;
-        if (Input.GetKey(inputConfig.rightKey)) h += 1f;
+        if (Input.GetKey(inputConfig.leftKey) || testInputs.leftKeyPressed) h -= 1f;
+        if (Input.GetKey(inputConfig.rightKey) || testInputs.rightKeyPressed) h += 1f;
 
-        bool jump = Input.GetKeyDown(inputConfig.jumpKey);
-        bool boost = Input.GetKey(inputConfig.boostKey);
+        bool jump = Input.GetKeyDown(inputConfig.jumpKey) || testInputs.jumpKeyPressed;
+        bool boost = Input.GetKey(inputConfig.boostKey) || testInputs.boostKeyPressed;
 
         SetInput(h, jump, boost);
 
         //checking for animator parameters
-        bool isBoosting = Input.GetKey(inputConfig.boostKey) && remainingBoost > 0f;
-        bool isMoving = Input.GetKey(inputConfig.leftKey) || Input.GetKey(inputConfig.rightKey) || isBoosting;
+        bool isBoosting = (Input.GetKey(inputConfig.boostKey) || testInputs.boostKeyPressed) && remainingBoost > 0f;
+        bool isMoving = Input.GetKey(inputConfig.leftKey) || testInputs.leftKeyPressed || Input.GetKey(inputConfig.rightKey) || testInputs.rightKeyPressed || isBoosting;
         bool isGrounded = IsGrounded();
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isBoosting", isBoosting);
@@ -94,11 +104,11 @@ public class CarMovement : MonoBehaviour
         if (!isMoving)
         {
             animator.enabled = false;
-            spriteRenderer.sprite = carIdleSprites[selectedCar]; 
+            spriteRenderer.sprite = carIdleSprites[selectedCar];
         }
         else
         {
-            animator.enabled = true; 
+            animator.enabled = true;
         }
 
     }
