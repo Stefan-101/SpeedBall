@@ -98,7 +98,12 @@
 
 # Automate tests
 ---
-
+ Tests for car movement can be seen here 👉 [View Tests](https://www.youtube.com/watch?v=nsvnU43GhPQ&feature=youtu.be).
+ Tests were made for checking:
+   - boosters for car
+   - jump functionality for car
+   - car's moving (left or right)
+     
 # Reporting bugs and solving them with pull request
 ---
 
