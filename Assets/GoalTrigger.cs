@@ -30,6 +30,11 @@ public class GoalTrigger : MonoBehaviour
             Debug.Log("Left Player Scored!");
             AudioManager.instance.Applause();
         }
+        else
+        {
+            return;
+        }
+        
         transform.position = new Vector3(0, 0, 0);
         rb.linearVelocityX = 0;
         rb.linearVelocityY = 0;
