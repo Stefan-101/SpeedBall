@@ -131,7 +131,7 @@ Also, find issues here 👉 [View Issues](https://github.com/Stefan-101/SpeedBal
 - Claude.ai
 - Deepseek
     
-***What did we used these tools for?***
+***What did we use these tools for?***
 ---
 
 ***1. Learning***
