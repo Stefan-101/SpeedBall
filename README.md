@@ -122,8 +122,7 @@ Also, find issues here 👉 [View Issues](https://github.com/Stefan-101/SpeedBal
 # Design patterns
 ---
 - ***Singleton for Audio Manager*** 👉 [View Singleton for Audio Manager](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/AudioManagerScript.cs)
-- ***Singleton for User Statistics*** 👉 [View Singleton for Stats Manager](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/StatsManager.cs)
-  
+ 
 # Prompt engineering - Documenting the use of AI tools during software development
 ---
 ***Used AI tools:***
