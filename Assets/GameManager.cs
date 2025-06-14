@@ -79,29 +79,29 @@ public class GameManager : MonoBehaviour
 
 
 
-        if (scoreLeft > scoreRight)
-        {
-            startTime.text += "\nLeft Player Wins!";
+        //if (scoreLeft > scoreRight)
+        //{
+        //    startTime.text += "\nLeft Player Wins!";
 
-            global::StatsManager.instance.AddGame(true); // dacă a câștigat
-            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+        //    global::StatsManager.instance.AddGame(true); // dacă a câștigat
+        //    global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
 
-        }
-        else if (scoreRight > scoreLeft)
-        {
-            startTime.text += "\nRight Player Wins!";
+        //}
+        //else if (scoreRight > scoreLeft)
+        //{
+        //    startTime.text += "\nRight Player Wins!";
 
-            global::StatsManager.instance.AddGame(false); // dacă a câștigat
-            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
-        }
-        else
-        {
-            startTime.text += "\nIt's a Draw!";
+        //    global::StatsManager.instance.AddGame(false); // dacă a câștigat
+        //    global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+        //}
+        //else
+        //{
+        //    startTime.text += "\nIt's a Draw!";
 
-            global::StatsManager.instance.AddDraw(true); // dacă a pierdut
-            global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
+        //    global::StatsManager.instance.AddDraw(true); // dacă a pierdut
+        //    global::StatsManager.instance.AddPlayTime(Time.deltaTime); // în Update()
 
-        }
+        //}
         StartCoroutine(ReturnToStartMenuAfterDelay(3f));
          // Optionally, freeze the game for a few seconds before resetting
 

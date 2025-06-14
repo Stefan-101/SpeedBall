@@ -4843,7 +4843,7 @@ MonoBehaviour:
   - {fileID: 1234254856}
   - {fileID: 2007832501}
   - {fileID: 523687476}
-  elapsedTime: 30
+  elapsedTime: 181
 --- !u!1 &1382248414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5625,11 +5625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cafd0a45e85dd4193255f238946667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    playedGames: 0
-    wonGames: 0
-    lostGames: 0
-    totalPlayTime: 0
+  playedGames: {fileID: 0}
+  wonGames: {fileID: 0}
+  lostGames: {fileID: 0}
+  totalPlayTime: {fileID: 0}
 --- !u!1 &1516234120
 GameObject:
   m_ObjectHideFlags: 0
