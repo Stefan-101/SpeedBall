@@ -117,11 +117,12 @@ Also, find issues here 👉 [View Issues](https://github.com/Stefan-101/SpeedBal
   
   We follow clean and consistent code standards throughout the project, as reflected in the scripts from this repository.
   
-  You can see the scripts [here](https://github.com/Stefan-101/SpeedBall/tree/master/Assets) (all the .cs files).
+  You can see some great scripts [here](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/Scripts/CarMovement.cs) and [here](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/Scripts/CustomCar.cs).
 
 # Design patterns
 ---
 - ***Singleton for Audio Manager*** 👉 [View Singleton for Audio Manager](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/AudioManagerScript.cs)
+- ***Factory for Multiplayer*** 👉 [View Factory for Multiplayer](https://github.com/Stefan-101/SpeedBall/blob/master/Assets/GameManagerMultiplayer.cs)
  
 # Prompt engineering - Documenting the use of AI tools during software development
 ---
