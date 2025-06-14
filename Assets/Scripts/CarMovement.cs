@@ -34,7 +34,7 @@ public class CarMovement : MonoBehaviour
     private float airboneTorquePower = 3f;
     private float boostPower = 52f;
     private float boostDrainRate = 30f;
-    private float defaultBoostAmount = 33f;
+    private float defaultBoostAmount = 45f;
     public float remainingBoost = 33f;
 
     [SerializeField] private Rigidbody2D rb;

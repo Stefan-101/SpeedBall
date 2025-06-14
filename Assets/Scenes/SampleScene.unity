@@ -396,7 +396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 33
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d66b41270263eb445b2461775de88d58, type: 2}
   m_sharedMaterial: {fileID: -2390585009447758381, guid: d66b41270263eb445b2461775de88d58, type: 2}
@@ -2895,7 +2895,7 @@ MonoBehaviour:
     jumpKey: 110
     boostKey: 98
     isLeftPlayer: 1
-  remainingBoost: 33
+  remainingBoost: 45
   rb: {fileID: 668001629}
   groundCheck: {fileID: 227986596}
   groundLayer:
@@ -4633,7 +4633,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 33
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d66b41270263eb445b2461775de88d58, type: 2}
   m_sharedMaterial: {fileID: -2390585009447758381, guid: d66b41270263eb445b2461775de88d58, type: 2}
@@ -5052,7 +5052,7 @@ MonoBehaviour:
     jumpKey: 258
     boostKey: 257
     isLeftPlayer: 0
-  remainingBoost: 33
+  remainingBoost: 45
   rb: {fileID: 1382248418}
   groundCheck: {fileID: 1529374900}
   groundLayer:
