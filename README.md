@@ -82,7 +82,7 @@
   ![image](https://github.com/user-attachments/assets/ecd102c9-b20c-4a31-9f34-043b517ab4d2)
   Also, find all branches here 👉 [View Branches](https://github.com/Stefan-101/SpeedBall/branches)
 
-- *merge/rebase*
+- *merges*
 
   | ![Image 1](https://github.com/user-attachments/assets/9660ac2c-8f39-4bdb-8e68-d2f1c7dddb7a) | ![Image 2](https://github.com/user-attachments/assets/f11d3134-c678-45e8-acec-8a74e87667fd) |
   |:--:|:--:|
