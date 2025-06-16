@@ -10,6 +10,8 @@
   | ![Image 1](https://github.com/user-attachments/assets/1948d527-da9a-491b-bd07-61564753a7d2) | ![Image 2](https://github.com/user-attachments/assets/fc52fb3d-5493-43b6-9c16-f82fbc710f96) |
   |---|---|
 
+  Trello link here 👉 [Trello Board](https://trello.com/b/Y2r6EpTj)
+
 # Backlog
 ---
 
